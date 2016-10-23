@@ -11,7 +11,7 @@ $ chmod +x /usr/local/bin/docker-compose
 # clone this repository and build
 $ git clone https://github.com/qube81/docker-compose-lamp.git
 $ cd docker-compose-lamp/
-$ docker-compose up -d
+$ docker-compose up -d --build
 
 # open http://localhost:8888
 ```
