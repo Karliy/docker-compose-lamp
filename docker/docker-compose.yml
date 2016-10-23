@@ -1,3 +1,4 @@
+
 version: '2'
 services:
   mysqldata:
@@ -13,7 +14,10 @@ services:
     ports:
       - "33060:3360"
     environment:
-      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: phpapp
+      MYSQL_USER: phpuser
+      MYSQL_PASSWORD: phppass
     volumes_from:
       - mysqldata
   app:
