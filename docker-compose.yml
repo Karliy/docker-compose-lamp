@@ -2,8 +2,13 @@ version: '2'
 services:
   mysql:
     build: ./mysql
+    ports:
+      - "33060:3360"
     environment:
       MYSQL_ROOT_PASSWORD: pass
+      # MYSQL_DATABASE: hoge
+      # MYSQL_USER: hoge
+      # MYSQL_PASSWORD: hoge
     volumes:
       - db:/var/lib/mysql
   php:
