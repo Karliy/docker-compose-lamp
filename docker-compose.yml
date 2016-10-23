@@ -1,23 +1,30 @@
 version: '2'
 services:
+  mysqldata:
+    image: busybox
+    container_name: docker-mysqldata
+    volumes:
+     - /var/lib/mysql
   mysql:
     build: ./mysql
+    container_name: docker-mysql
+    stdin_open: true
+    tty: false
     ports:
       - "33060:3360"
     environment:
       MYSQL_ROOT_PASSWORD: pass
-      # MYSQL_DATABASE: hoge
-      # MYSQL_USER: hoge
-      # MYSQL_PASSWORD: hoge
-    volumes:
-      - db:/var/lib/mysql
-  php:
+    volumes_from:
+      - mysqldata
+  app:
     build: ./php
+    container_name: docker-app
+    stdin_open: true
+    tty: false
     ports:
       - '8888:80'
     volumes:
       - ./src:/var/www/html
+      - ./apache:/etc/apache2/sites-enabled/
     depends_on:
       - mysql
-volumes:
-  db:
